@@ -13,6 +13,17 @@ Further, suppose that there is a regression test suite $T$ that contains six tes
 - The execution with $t_5$ leads to the following branches being covered: $b_2, b_5, b_8, b_9, b_{10}$.
 - The execution with $t_6$ leads to the following branches being covered: $b_1, b_4, b_7$.
 
+First of all, for convenience, let us build the coverage matrix, where 1 indicates that a test covers a branch:
+
+| Test\Branch | $b_1$ | $b_2$ | $b_3$ | $b_4$ | $b_5$ | $b_6$ | $b_7$ | $b_8$ | $b_9$ | $b_{10}$ |
+| :-------- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :----: |
+| $t_1$     |   1   |   0   |   1   |   0   |   0   |   0   |   1   |   0   |   0   |    0     |
+| $t_2$     |   0   |   1   |   0   |   0   |   1   |   0   |   1   |   0   |   0   |    0     |
+| $t_3$     |   1   |   0   |   0   |   1   |   0   |   0   |   0   |   1   |   0   |    1     |
+| $t_4$     |   0   |   1   |   0   |   0   |   0   |   1   |   0   |   0   |   1   |    1     |
+| $t_5$     |   0   |   1   |   0   |   0   |   1   |   0   |   0   |   1   |   1   |    1     |
+| $t_6$     |   1   |   0   |   0   |   1   |   0   |   0   |   1   |   0   |   0   |    0     |
+
 ## Test Suite Minimisation
 
 ### Task 1
@@ -24,11 +35,11 @@ Further, suppose that there is a regression test suite $T$ that contains six tes
 #### Sample Solution
 
 The greedy algorithm will follow these steps:
-1. $\emptyset$
-2. Add test with highest coverage: $\{t_5\}$
-3. Next, there are two choices with the highest number of covered goals (4): $t_3$ and $t_4$, so we pick either of them, say $t_3$: $\{t_5, t_3\}$
+1. Start with the empty set $\emptyset$
+2. Add the test with highest number of covered branches: $\{t_5\}$ ($t_5$ covers five branches)
+3. Next, there are two choices with the highest number of covered branches (four): $t_3$ and $t_4$, so we pick either of them, say $t_3$: $\{t_5, t_3\}$
 4. The next obvious candidate is now $t_4$ as it is the only test covering 4 branches: $\{t_5, t_3, t_4\}$
-5. We now have three tests that cover three branches each, so we pick one of them, say $t_1$:  $\{t_5, t_3, t_4, t_1\}$. At this step, we get lucky because $t_1$ covers precisely the only remaining uncovered branches $b_3$ and $b_7$. Therefore the algorithm stops and the reduced test suite is $\{t_5, t_3, t_4, t_1\}$. Had we picked for example $t_2$ or $t_6$ in this step, we would have had to continue for one or two more iterations to achieve full coverage.
+5. We now have three tests that cover three branches each ($t_1$, $t_2$ and $t_6$), so we pick one of them, say $t_1$:  $\{t_5, t_3, t_4, t_1\}$. At this step, we get lucky because $t_1$ covers precisely the only remaining uncovered branches $b_3$ and $b_7$. Therefore the algorithm stops and the reduced test suite is $\{t_5, t_3, t_4, t_1\}$. Had we picked for example $t_2$ or $t_6$ in this step, we would have had to continue for one or two more iterations to achieve full coverage.
 
 The same algorithm can be applied in a more analytical way as follows. First, find out the number of branches covered by each test case: 3, 3, 4, 4, 5, 3 for $t_1..t_6$, respectively. Thus, there are 12 possible orders in which test cases might be considered, which can be represented by the following:
 
