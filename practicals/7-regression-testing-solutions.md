@@ -78,27 +78,33 @@ Finally, the algorithm by Harrold et al. would proceed as follows:
 
 First, we list the tests that cover each goal:
 
-- $b_1$: t1, t3, t6
-- $b_2$: t2,t4,t5
-- $b_3$: t1
-- $b_4$: t3,t6;
-- $b_5$: t2,t5;
-- $b_6$: t4;
-- $b_7$: t1,t2,t6;
-- $b_8$: t3,t5;
-- $b_9$: t4, t5;
-- $b_10$: t3, t4, t5
+- $b_1$: $t_1$, $t_3$, $t_6$
+- $b_2$: $t_2$,$t_4$,$t_5$
+- $b_3$: $t_1$
+- $b_4$: $t_3$,$t_6$
+- $b_5$: $t_2$,$t_5$
+- $b_6$: $t_4$
+- $b_7$: $t_1$,$t_2$,$t_6$
+- $b_8$: $t_3$,$t_5$
+- $b_9$: $t_4$, $t_5$
+- $b_{10}$: $t_3$, $t_4$, $t_5$
 
 We look at goals covered by a single test. In this example, we have $b_3$ and $b_6$ therefore we add the covering tests: $\{t_1, t_4\}$
 
-Next, we discard all the goals that have been covered by the selection to update the list of yet-uncovered goals:
+Next, we discard all the goals that have been covered by the selection $\{t_1, t_4\}$ (namely $b_1$, $b_2$, $b_3$, $b_6$, $b_7$, $b_9$ and $b_{10}$) and update the list of remaining uncovered goals:
 
-- $b_4$: t3,t6;
-- $b_5$: t2,t5;
-- $b_8$: t3,t5;
 
-We are left only with goals covered by two tests. Let's look at $b_4$, which is covered by two tests $t_3$ and $t_6$.
+- $b_4$: $t_3$,$t_6$
+- $b_5$: $t_2$,$t_5$
+- $b_8$: $t_3$,$t_5$
 
+We are left only with goals covered by two tests. Let's pick one at random, e.g., $b_4$, which is covered by tests $t_3$ and $t_6$. Between these, we pick $t_3$, because it covers more yet-uncovered branches than $t_6$ ($b_4$ and $b_8$ vs only $b_4$). Our selection is now $\{t_1, t_4, t_3\}$ and our remaining list of goals to cover is:
+
+- $b_5$: $t_2$,$t_5$
+
+Since there are no more goals left to cover, we add any of the tests covering $b_5$, e.g., $t_2$. The resulting minimised suite is:
+
+$\{t_1, t_4, t_3, t_2\}$
 
 ## Test Prioritisation
 
