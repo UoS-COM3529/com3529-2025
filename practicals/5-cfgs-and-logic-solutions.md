@@ -33,6 +33,46 @@ flowchart TD
     style Exception color:#FFFFFF, fill:#FF0000, stroke:#FF0000
 ```
 
+## Branch and Path Coverage
+
+```java
+    @Test
+    public void shouldSatisfyBranchCoverageInMisc() {
+        assertEquals(0, misc(0, 0, 0));
+        assertEquals(50, misc(1, 1, 1));
+    }
+
+    @Test
+    public void shouldSatisfyPathCoverageInMisc() {
+        assertEquals(0, misc(0, 0, 0));
+        assertEquals(10, misc(1, 0, 0));
+        assertEquals(40, misc(1, 1, 0));
+        assertEquals(50, misc(1, 1, 1));
+        assertEquals(40, misc(0, 1, 0));
+        assertEquals(50, misc(0, 1, 1));
+        assertEquals(50, misc(0, 0, 1));
+        assertEquals(50, misc(1, 1, 1));
+    }
+
+    @Test
+    public void shouldSatisfyBranchCoverageInGCD() {
+        assertEquals(7, gcd(14, 21));
+    }
+
+    @Test
+    public void shouldSatisfyPathCoverageInGCDWithTwoLoopIterations() {
+        // Because the method contains a loop, it is not possible to satisfy path coverage in general
+        // But it is possible if we define a bound, e.g., set the number of loop iterations to two
+        assertEquals(1, gcd(1, 1)); // does not enter loop
+        assertEquals(2, gcd(4, 2)); // enters loop once; if-branch
+        assertEquals(2, gcd(2, 4)); // enters loop once; else-branch
+        assertEquals(2, gcd(6, 2)); // enters loop twice; if-branch -> if-branch
+        assertEquals(2, gcd(6, 4)); // enters loop twice; if-branch -> else-branch
+        assertEquals(2, gcd(2, 6)); // enters loop twice; else-branch -> else-branch
+        assertEquals(2, gcd(4, 6)); // enters loop twice; else-branch -> if-branch
+    }
+```
+
 ## Logic Analysis and Testing
 
 
