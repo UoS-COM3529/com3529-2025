@@ -110,34 +110,37 @@ $\{t_1, t_4, t_3, t_2\}$
 
 ### Task 2
 
-1. Apply the Greedy Algorithm to the above scenario to produce an execution order for the test cases. If there is more than one possible result of the Greedy Algorithm, then list them all.
-2. Apply the Additional Greedy Algorithm to the above scenario to produce an execution order for the test cases.
+1. Apply the Greedy Algorithm to the above scenario to produce an execution order for the test cases. If there is more than one possible result, then list them all.
 
 #### Sample Solution
 
-Considering the working above, we obtain:
+The greedy algorithm aims to maximise coverage as quickly as possible, so it would start by picking $t_5$, which covers the highest number of goals:
 
-- All orders represented by the following.
+$\{t_5\}$
 
-$\{t_5\}\{t_3t_4, t_4t_3\}
-\{t_1 t_2 t_6, t_1 t_6 t_2, t_2 t_1 t_6, t_2 t_6 t_1, t_6 t_1 t_2, t_6 t_2 t_1\}$
+Then, since $t_3$ and $t_4$ cover the same number of goals, either of their permutations would come next:
 
-- Orders: $t_5 t_6 t_1 t_4$ and $t_5 t_6 t_4 t_1$
+$\{t_5\}\{t_3t_4 | t_4t_3\}$
+
+Finally, since $t_1$, $t_2$, and $t_6$ cover three goals each, either of their permutations could follow. All possible valid orderings can therefore be represented as:
+
+$\{t_5\}\{t_3t_4 | t_4t_3\}
+\{t_1 t_2 t_6 | t_1 t_6 t_2 | t_2 t_1 t_6 | t_2 t_6 t_1 | t_6 t_1 t_2 | t_6 t_2 t_1\}$
+
+For example, a concrete valid order of execution would be: $t_5 t_3 t_4 t_2 t_1 t_6$
 
 ### Task 3
 
-Consider the orderings you produced in the previous task. Given an ordering of the six test cases, we can look at the coverage provided by the first $n$ test cases, where $1 \leq n \leq 6$.
+Consider the ordering you produced in the previous task. If the greedy algorithm can produce more than one ordering then choose one to be used in the following. Given an ordering of the six test cases, we can look at the coverage provided by the first $n$ test cases, where $1 \leq n \leq 6$.
 
-If either Greedy or Additional Greedy can produce more than one ordering then choose one such ordering to be used in the following.
-
-1. For what lengths (values of $n$) do the orderings provided by Greedy and Additional Greedy produce the same branch coverage?
+1. For what lengths (values of $n$) does the ordering produce the same branch coverage?
 2. What is the value of $n$ that leads to the largest difference in coverage, and how large is this difference?
 
 #### Sample Solution
 
-For Greedy, consider the following order: $t_5 t_3 t_4 t_2 t_1 t_6$.
+Consider the following order: $t_5 t_3 t_4 t_2 t_1 t_6$.
 
-The branch coverage provided by prefixes is given by the following:
+The branch coverage provided by prefixes (i.e., incrementally) is given by the following:
 
 - $t_5$: 5 branches
 - $t_5 t_3$: 7 branches
@@ -146,14 +149,9 @@ The branch coverage provided by prefixes is given by the following:
 - $t_5 t_3 t_4 t_2 t_1$: 10 branches
 - $t_5 t_3 t_4 t_2 t_1 t_6$: 10 branches
 
-For Additional Greedy, consider: $t_5, t_6, t_1, t_4$ (but we know that the other ordering will provide the same coverage for each $n$). The branch coverage provided by prefixes is given by the following:
+At length 5 and length 6 all 10 branches are covered.
 
-- $t_5$: 5 branches
-- $t_5 t_6$: 8 branches
-- $t_5 t_6 t_1$: 9 branches
-- $t_5 t_6 t_1 t_4$: All 10 branches
-
-In this case, Additional Greedy achieves higher branch coverage for lengths 2 to 4.
+The biggest increase in coverage happens at length 2, with the increase of two covered goals.
 
 ## Test Selection
 

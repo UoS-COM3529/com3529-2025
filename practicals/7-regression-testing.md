@@ -25,16 +25,13 @@ Further, suppose that there is a regression test suite $T$ that contains six tes
 
 ### Task 2
 
-1. Apply the Greedy Algorithm to the above scenario to produce an execution order for the test cases. If there is more than one possible result of the Greedy Algorithm, then list them all.
-2. Apply the Additional Greedy Algorithm to the above scenario to produce an execution order for the test cases.
+1. Apply the Greedy Algorithm to the above scenario to produce an execution order for the test cases. If there is more than one possible result, then list them all.
 
 ### Task 3
 
-Consider the orderings you produced in the previous task. Given an ordering of the six test cases, we can look at the coverage provided by the first $n$ test cases, where $1 \leq n \leq 6$.
+Consider the ordering you produced in the previous task. If the greedy algorithm can produce more than one ordering then choose one to be used in the following. Given an ordering of the six test cases, we can look at the coverage provided by the first $n$ test cases, where $1 \leq n \leq 6$.
 
-If either Greedy or Additional Greedy can produce more than one ordering then choose one such ordering to be used in the following.
-
-1. For what lengths (values of $n$) do the orderings provided by Greedy and Additional Greedy produce the same branch coverage?
+1. For what lengths (values of $n$) does the ordering produce the same branch coverage?
 2. What is the value of $n$ that leads to the largest difference in coverage, and how large is this difference?
 
 ## Test Selection
