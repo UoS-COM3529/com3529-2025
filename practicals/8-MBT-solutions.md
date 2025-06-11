@@ -112,17 +112,6 @@ For each FSM and assuming input alphabet $X = \{a,b\}$, output alphabet $Y = \{0
     aaa, ab, baa, bb, aaaa, aab, abaa, abb, aaaaa, aaab, aabaa, aabb, baaa, bab, bbaa, bbb
     \}$$
 
-    (Alternative) Applying the W-Method, we use: $V = \{\epsilon, a, aa, b\}$,
-    $W = \{a,b\}$. We therefore obtain the following:
-
-    $$\{\epsilon, a, aa, b\} \{a,b\} \{a,b\}$$
-
-    We can expand this out to get:
-
-    $$\{
-    aa, ab, ba, bb, aaa, aab, aba, abb, aaaa, aaab, aaba, aabb, baa, bab, bba, bbb
-    \}$$
-
 ## Sample Solution for $M_2$
 
 ![FSM Example 2](8-MBT-files/example2.png "FSM Example 2")
